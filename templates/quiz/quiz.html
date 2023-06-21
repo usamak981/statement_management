@@ -1,0 +1,54 @@
+{% extends "core/accounts_base.html" %}
+
+{% load static %}
+
+{% block page_title %}
+<title>Preview Certificate</title>
+{% endblock page_title %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+<div class="quiz_attempt_page">
+    <h1 class="quiz_heading">QUIZ- {{quiz.text}}</h1>
+    {% if question %}
+        <div class="row">
+            <div class="col-md-12">
+                <form id="Quiz_attempt_Form" name="Quiz_attempt_Form" method="post">
+                    {% csrf_token %}
+
+                    <!-- One "tab" for each step in the form: -->
+                    <div class="tab">
+                        <h2 class="quest_heading">{{question.text}}</h2>
+                        <input type="text" id="atempts" name="atemptted_question" value="{{atemptted_question}}" style="display: none">
+                        <input type="text" id="{{question.id}}" name="question_id" value="{{question.id}}" style="display: none">
+                        {% for answer in answer_set %}
+                        <label class="radiobtn" for="{{answer.id}}">
+                            <input  type="radio" id="{{answer.id}}" name="answer" value="{{answer.id}}" required>
+                            <label class="label" for="{{answer.id}}">{{answer.text}}</label>
+                        </label>
+                        {% endfor %}
+                    </div>
+
+                    <button class="button" type="submit" id="prev_Btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <h1 class="quiz_heading">{{message}}</h1>
+        {% if message == "You Completed the certificate." %}
+            <div class="row">
+                <div class="row"><a href="{% url 'certificate_for_participant' quiz.event_id %}?quiz_attempted=attempted" class="btn btn-primary">Generate Certificate</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+</div>
+
+</div>
+{% endblock content %}
+
+
+{% block js_script %}
+{% endblock js_script %}

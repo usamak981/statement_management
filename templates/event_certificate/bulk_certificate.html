@@ -1,0 +1,428 @@
+{% extends "core/accounts_base.html" %}
+
+{% load static %}
+
+{% block page_title %}
+<title>Preview Certificate</title>
+{% endblock page_title %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+<div class="certificate_page">
+
+    {% if event.category.title == "DOH Accreditation" or event.category.title == "DHA Accreditation" %}
+        <div class="container d-flex justify-content-center align-items-center" style="min-height:800px;">
+        <div class="row d-flex justify-content-center">
+            <button class="btn btn-primary"  type="submit" onclick="createbulkPDF()" style="padding:20px 80px; font-size:24px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">Download All Certificate</button>
+        </div>
+    </div>
+    {% else %}
+        <div class="container d-flex justify-content-center align-items-center" style="min-height:800px;">
+        <div class="row ">
+            <button class="btn btn-primary"  type="submit" onclick="createbulkPDFUK()" style="padding:20px 80px; font-size:24px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">Download All Certificate</button>
+        </div>
+    </div>
+    {% endif %}
+    {% for certificate in certificate_list %}
+
+    {% if event.category.title == "DOH Accreditation" %}
+    <! -----------------DOH-------------------->
+
+    <div class="container certificate_sec set " id="certificate_sec{{certificate.id}}">
+        <div class="row">
+            <div class="col-3 d-flex justify-content-center">
+
+                    <img class="" src="{% static 'dist/img/Logos-021.png' %}" alt="User Avatar" width="50%">
+
+            </div>
+            <label class="tst" style="display:none">{{certificate.certificate_number}}</label>
+            <label class="tst1" style="display:none">{{certificate.eventParticipant.firstName}} {{certificate.eventParticipant.lastName}}</label>
+            <div class="col-6"></div>
+            <div class="col-3 d-flex justify-content-center">
+<!--                {% if event.logo %}-->
+<!--                    <img class="" src="{{ event.logo.url }}" alt="Event Logo" width="100">-->
+<!--                {% endif %}-->
+            </div>
+
+        </div>
+        <div class="row" style="margin-top:-50px">
+            <h1 class="col-12 font_70px center">CERTIFICATE</h1>
+            <p class="col-12 font_25px center margin_10px">OF ATTENDANCE</p>
+            <div class="col-3"></div>
+        </div>
+        <div class="row mt-5">
+            <p class="col-12 font_25px center">This is to certify that:</p>
+            <h1 class="col-12 font_70px center margin_10px">{{certificate.eventParticipant.firstName}}
+                {{certificate.eventParticipant.lastName}}</h1>
+        </div>
+
+        <hr class="col-6">
+        <div class="row mt-3">
+            <div class="col-3"></div>
+            <h1 class="col-6 center txt_color font-weight-bold">Attended:<span class=" txt_color font_weight_400">&nbsp;{{event.title}}</span>
+            </h1>
+            <div class="col-3"></div>
+
+        </div>
+        <div class="row mt-3">
+            <div class="col-4"></div>
+            <div class="col-4 d-flex justify-content-between">
+                <div class=" d-flex justify-content-start align-items-center">
+                    <div>
+                        <img src="{% static 'dist/img/calendar.png' %}" alt="User Avatar" width="50">
+                    </div>
+                    <div class=" ml-3">
+                        <p class="font_25px font-weight-bold">Held On:</p>
+                        <p class="font_25px">{{event.event_date}}</p>
+                    </div>
+                </div>
+                <div class=" d-flex justify-content-start align-items-center">
+                    <div>
+                        <img src="{% static 'dist/img/location.png' %}" alt="User Avatar" width="50">
+                    </div>
+                    <div class=" ml-3">
+                        <p class="font_25px font-weight-bold">Venue:</p>
+                        <p class="font_25px">{{event.location}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <p class="font_35px center">This Program is Awarded {{event.points}} CPD Credit Points
+                    by Department of Health - Abu Dhabi</p>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h5 class="center bold txt_color">Under Accreditation ID Number:<span class="medium">&nbsp;&nbsp;{{event.accreditation_no}}</span>
+                </h5>
+                <h5 class="center bold txt_color">Facility Number:<span
+                        class="medium">&nbsp;&nbsp;{{event.facility_number}}</span></h5>
+            </div>
+            <div class="col-3">
+                <h4 class="center bold">Loyal Joma</h4>
+                <p class="center">CEO</p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3 center d-flex justify-content-center align-items-end"><p>
+                {{certificate.certificate_number}}</p></div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if event.category.title == "DHA Accreditation" %}
+    <! -----------------DHA-------------------->
+
+    <div class="container certificate_sec set" id="certificate_dha_sec{{certificate.id}}">
+        <div class="row">
+            <div class="col-3 d-flex justify-content-center">
+
+                    <img class="" src="{% static 'dist/img/Logos-021.png' %}" alt="User Avatar" width="50%">
+
+            </div>
+            <label class="tst" style="display:none">{{certificate.certificate_number}}</label>
+            <label class="tst1" style="display:none">{{certificate.eventParticipant.firstName}} {{certificate.eventParticipant.lastName}}</label>
+
+            <div class="col-6"></div>
+            <div class="col-3 d-flex justify-content-center">
+<!--                {% if event.logo %}-->
+<!--                    <img class="" src="{{ event.logo.url }}" alt="Event Logo" width="100">-->
+<!--                {% endif %}-->
+            </div>
+
+        </div>
+        <div class="row" style="margin-top:-50px">
+            <h1 class="col-12 center curve font-italic">Certificate</h1>
+            <p class="col-12 font_20px center  margin_min25px margin_left txt_color">OF ATTENDANCE</p>
+            <div class="col-3"></div>
+        </div>
+        <div class="row mt-3">
+            <p class="col-12 font_25px center">This is to certify that:</p>
+            <h1 class="col-12 font_70px center margin_10px">{{certificate.eventParticipant.firstName}}
+                {{certificate.eventParticipant.lastName}}</h1>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <p class="font_35px txt_color margin_20px font_weight_400 text-center">Attended:</p><br>
+                <h1 class=" center margin_min25px  font-weight-bold">
+                    {{event.title}}</h1>
+            </div>
+            <div class="col-2"></div>
+
+        </div>
+        <div class="row mt-3">
+            <div class="col-4"></div>
+            <div class="col-4 d-flex justify-content-between">
+                <div class=" d-flex justify-content-start align-items-center">
+                    <div>
+                        <img src="{% static 'dist/img/calendar.png' %}" alt="User Avatar" width="50">
+                    </div>
+                    <div class=" ml-3">
+                        <p class="font_25px font-weight-bold">Held On:</p>
+                        <p class="font_25px">{{event.event_date}}</p>
+                    </div>
+                </div>
+                <div class=" d-flex justify-content-start align-items-center">
+                    <div>
+                        <img src="{% static 'dist/img/location.png' %}" alt="User Avatar" width="50">
+                    </div>
+                    <div class=" ml-3">
+                        <p class="font_25px font-weight-bold">Venue:</p>
+                        <p class="font_25px">{{event.location}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <p class="font_35px center">Awarded {{event.points}} Hours of CPD Credit Points
+                    by Dubai Health Authority</p>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h5 class="center bold">Accreditation No:</h5>
+                <p class="font_25px text-center">{{event.facility_number}}</p>
+            </div>
+            <div class="col-3">
+                <h4 class="center bold">Loyal Joma</h4>
+                <p class="center">CEO</p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3 center d-flex justify-content-center align-items-end"><p>{{certificate.certificate_number}}</p></div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if event.category.title == "SCFHS Accreditation" %}
+      <div class="container msg_show" style="width: 70%; margin:80px auto; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;padding:50px;border-radius:10px">
+        <div class="row d-flex justify-content-center align-items-center" >
+          <h3>The SCFHS CME Hours will be automatically registered in your account on MUMARIS PLUS
+            within {{event.mumaris_days}} Days.
+          </h3>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if event.category.title == "UK CPD Accreditation 1" %}
+    <! -----------------uk1 CPD-------------------->
+
+
+    <div class="container certificate_sec set " id="certificate_uk1_sec{{certificate.id}}" style="
+ background-image: url({% static 'dist/img/pdf-certi-design-2.png' %});
+ background-size: cover;
+ background-repeat: no-repeat;">
+
+        <div class="row">
+            <div class="col-4"></div>
+            <h1 class="col-6 font_70px center" style="color:black">CERTIFICATE</h1>
+            <div class="col-2"></div>
+            <div class="col-4"></div>
+            <p class="col-6 font_25px center font-weight-bold " style="color:black">OF</p>
+            <div class="col-2"></div>
+        </div>
+            <label class="tst" style="display:none">{{certificate.certificate_number}}</label>
+        <label class="tst1" style="display:none">{{certificate.eventParticipant.firstName}} {{certificate.eventParticipant.lastName}}</label>
+
+        <div class="row">
+            <div class="col-4"></div>
+            <p class="col-6 font_45px font-weight-bold center">CONTINUING PROFESSIONAL<br>DEVELOPMENT</p>
+            <div class="col-2"></div>
+            <div class="col-md-4"></div>
+            <p class="col-6 font_40px center ">The CPD Certification Services<br> certifies that </p>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-4"></div>
+            <h2 class="col-6 center font-weight-bold">{{certificate.eventParticipant.firstName}}
+                {{certificate.eventParticipant.lastName}}</h2>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-6">
+                <p class="font_25px center" style="color:black">The above name has participated in the following<br> CPD
+                    activity.</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-4"></div>
+            <h2 class="col-6 center font-weight-bold">
+                {{event.title}}</h2>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-4"></div>
+            <div class="col-6">
+                <p class="font_25px center" style="color:black">An initiative to increase standards of CPD provision
+                    <br>to professionals in relevant market sectors.</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-6 flex_right">
+                <h5 class=" bold ">Date of CPD Activity:<span class="medium">&nbsp;{{event.event_date}}</span></h5>
+                <h5 class=" bold ">No. CPD Hours/Points:<span class="medium">&nbsp;{{event.points}}</span></h5>
+                <h5 class=" bold ">CPD Approval No:<span class="medium">&nbsp;{{event.cpd_approval_no}}</span></h5>
+                <h5 class=" bold ">CPD ORG No:<span class="medium">&nbsp;{{event.cpd_org_no}}</span></h5>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-6 flex_right">
+                <p class="">The Coach House, Ealing Green, London W5 5ER</p>
+                <p class="  ">Email: info@cpduk.co.uk Web: www.cpduk.co.uk</p>
+                <p class="">Tel: 020 8840 4383 Fax: 020 8579 3991</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-6 flex_right">
+                <p class="">{{certificate.certificate_number}}</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-2 p-3">
+                {% if event.logo %}
+
+                <img  src="{% static 'dist/img/Cpd_logo.png' %}" alt="User Avatar" width="100" >
+                {% endif %}
+            </div>
+            <div class="col-8"></div>
+            <div class="col-2">
+<!--                {% if event.logo %}-->
+<!--                    <img class="certificate_logo" src="{{ event.logo.url }}" alt="User Avatar">-->
+<!--                {% endif %}-->
+            </div>
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    {% if event.category.title == "UK CPD Accreditation 2" %}
+    <! -----------------uk2 CPD-------------------->
+
+    <div class="container certificate_sec set " id="certificate_uk2_sec{{certificate.id}}" style="
+ background-image: url({% static 'dist/img/pdf-certi-design-2.png' %});
+ background-size: cover;
+ background-repeat: no-repeat;">
+            <label class="tst" style="display:none">{{certificate.certificate_number}}</label>
+            <label class="tst1" style="display:none">{{certificate.eventParticipant.firstName}} {{certificate.eventParticipant.lastName}}</label>
+
+
+        <div class="row">
+            <div class="col-4"></div>
+            <h1 class="col-6 font_70px center" style="color:black">CERTIFICATE</h1>
+            <div class="col-2"></div>
+            <div class="col-4"></div>
+            <p class="col-6 font_25px center font-weight-bold " style="color:black">OF</p>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <p class="col-6 font_45px font-weight-bold center">CONTINUING PROFESSIONAL<br>DEVELOPMENT</p>
+            <div class="col-2"></div>
+            <div class="col-md-4"></div>
+            <p class="col-6 font_40px center ">The CPD Certification Services<br> certifies that </p>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-4"></div>
+            <h2 class="col-6 center font-weight-bold">{{certificate.eventParticipant.firstName}}
+                {{certificate.eventParticipant.lastName}}</h2>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-6">
+                <p class="font_25px center" style="color:black">The above name has participated in the following<br> CPD
+                    activity.</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-4"></div>
+            <h2 class="col-6 center font-weight-bold">{{event.title}}</h2>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-4"></div>
+            <div class="col-6">
+                <p class="font_25px center" style="color:black">An initiative to increase standards of CPD provision
+                    <br>to professionals in relevant market sectors.</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-6 flex_right">
+                 <h5 class=" bold ">Approval Date of CPD Activity:<span class="medium">&nbsp;{{event.event_date}}</span></h5>
+                <h5 class=" bold ">No. CPD Hours/Points:<span class="medium">&nbsp;{{event.points}}</span></h5>
+                <h5 class=" bold ">CPD Approval No:<span class="medium">&nbsp;{{event.cpd_approval_no}}</span></h5>
+                <h5 class=" bold ">CPD ORG No:<span class="medium">&nbsp;{{event.cpd_org_no}}</span></h5>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-6 flex_right">
+                <p class="">The Coach House, Ealing Green, London W5 5ER</p>
+                <p class="  ">Email: info@cpduk.co.uk Web: www.cpduk.co.uk</p>
+                <p class="">Tel: 020 8840 4383 Fax: 020 8579 3991</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-6 flex_right">
+                <p class="">{{certificate.certificate_number}}</p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-2 p-3">
+                {% if event.logo %}
+
+                <img  src="{% static 'dist/img/Cpd_logo.png' %}" alt="User Avatar" width="100" >
+                {% endif %}
+            </div>
+            <div class="col-8"></div>
+            <div class="col-2">
+<!--                {% if event.logo %}-->
+<!--                    <img class="certificate_logo" src="{{ event.logo.url }}" alt="User Avatar">-->
+<!--                {% endif %}-->
+            </div>
+        </div>
+
+
+    </div>
+
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock content %}
+
+
+{% block js_script %}
+{% endblock js_script %}

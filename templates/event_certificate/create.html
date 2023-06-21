@@ -1,0 +1,60 @@
+{% extends "core/accounts_base.html" %}
+
+{% load static %}
+
+{% block page_title %}
+<title>Certificate</title>
+{% endblock page_title %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+
+<div class="check_flx" style=" ">
+
+            <div class=" img_wid ">
+                <div class=" hide_for_mobile">
+                {% if event.logo %}<image src="{{ event.logo.url }}" style="border-radius:5px !important;width: 150px !important;height: 150px !important;"   alt="no image"/>{%endif%}
+            </div>
+                <div class="p-2 mt-5  ">
+                {% if event.background_img %}<image src="{{ event.background_img.url }}" style="width:100%"   alt="no image"/>{%endif%}
+                    </div>
+            </div>
+
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary widd" style="">
+        <div class="card-header text-center">
+            <p  class="h1">
+                <b>Event:</b> {{event.title|capfirst}}
+            </p>
+        </div>
+        <div class="card-body">
+            {% if not quiz_required %}
+            <form id="quickForm" novalidate="novalidate" method="post">
+                {% csrf_token %}
+
+                <div class="card-body">
+                  {{ form.as_p}}
+                </div>
+
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            {% else %}
+            Quiz is Required
+            {% endif %}
+        </div>
+            <!-- /.card -->
+
+    </div>
+
+</div>
+
+{% endblock content %}
+
+
+{% block js_script %}
+{% endblock js_script %}
