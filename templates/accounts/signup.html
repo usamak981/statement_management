@@ -1,0 +1,107 @@
+{% extends "core/accounts_base.html" %}
+
+{% load static %}
+
+{% block page_title %}Sign Up{% endblock page_title %}
+
+
+{% block content %}
+<div class="login-page">
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+            <a href="{% url 'login' %}" class="h1"><b>Brackets</b>CMS</a>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            <form action="{% url 'signup' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    {{ form.username }}
+            
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                {% if form.username.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.username.errors %}
+                            <li>{{ error|escape }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <div class="input-group mb-3">
+                    {{ form.email }}
+            
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                {% if form.email.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.email.errors %}
+                            <li>{{ error|escape }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <div class="input-group mb-3">
+                    {{ form.password1 }}
+            
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                {% if form.password1.errors %}
+                <ul class="errorlist">
+                    {% for error in form.password1.errors %}
+                    <li>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="input-group mb-3">
+                    {{ form.password2 }}
+            
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                {% if form.errors.password2 %}
+                    {{ form.errors.password2|escape }}
+                {% endif %}
+            
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-4 pull-right">
+                        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    </div>
+                </div>
+            </form>
+            
+
+                    <p class="mb-1 pull-right">
+                <a href="{% url 'login' %}" class="text-center">Already Have an account? login</a>
+            </p>
+        </div>
+        
+    </div>
+</div>
+</div>
+{% endblock content %}
+
+
+{% block js_script %}
+{% endblock js_script %}

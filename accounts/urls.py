@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from .views import *
 urlpatterns = [
+    path('signup/', signup, name='signup'),
     path('login/', LoginView.as_view(next_page='list_event_managers'), name='login'),
     path('profile/', profile, name='profile'),
 ]
