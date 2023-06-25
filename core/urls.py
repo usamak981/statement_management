@@ -41,6 +41,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('dashboard/', include('superuser.urls')),
     path('admin/', include('managers.urls')),
+    path('senders/', include('sender.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

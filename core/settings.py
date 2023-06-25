@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'managers',
     'superuser',
     'bootstrap4',
+    'sender',
 ]
 
 MIDDLEWARE = [

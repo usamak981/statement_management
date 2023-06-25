@@ -176,6 +176,29 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-person"></i>
                         <p>
+                            Senders
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'sender_list' %}" class="nav-link">
+                                <i class="far bi bi-person-lines-fill nav-icon"></i>
+                                <p>List All Senders</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'sender_create' %}" class="nav-link">
+                                <i class="fas bi bi-person-add nav-icon"></i>
+                                <p>Add Sender</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon bi bi-person"></i>
+                        <p>
                             Event Managers
                             <i class="right fas fa-angle-left"></i>
                         </p>
